@@ -1,0 +1,40 @@
+<style></style>
+<main class="main p-8 bg-gray-100 min-h-screen">
+  <div class="container mx-auto">
+    <div class="mt-5 mb-4">
+      <label for="user" class="block text-gray-700 mb-2">Usuario</label>
+      <select id="user" (change)="onUserChange($event)" class="w-full border border-gray-300 rounded-md shadow-sm p-2">
+        <option value="">--Seleccione un usuario--</option>
+        <option *ngFor="let user of users" [value]="user?.id">{{ user?.name }}</option>
+      </select>
+      <div *ngIf="!users?.length" class="text-red-500 mt-2">No hay usuarios disponibles</div>
+    </div>
+
+    <h2 class="text-xl font-semibold mb-4">Posts del Usuario Seleccionado</h2>
+
+    <table *ngIf="posts.length > 0" class="min-w-full table-auto border-collapse bg-white shadow-lg rounded-lg">
+      <thead>
+        <tr class="bg-blue-500 text-white">
+          <th class="border px-4 py-2">Id</th>
+          <th class="border px-4 py-2">Título</th>
+          <th class="border px-4 py-2">Descripción</th>
+          <th class="border px-4 py-2">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts" class="bg-gray-50 even:bg-white hover:bg-gray-100">
+          <td class="border px-4 py-2">{{ post.id }}</td>
+          <td class="border px-4 py-2">{{ post.title }}</td>
+          <td class="border px-4 py-2">{{ post.body }}</td>
+          <td class="border px-4 py-2 text-center">
+            <button (click)="onPostClick(post)" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+              Ver Comentarios
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!posts?.length" class="text-red-500 mt-4">No hay posts disponibles</div>
+  </div>
+</main>

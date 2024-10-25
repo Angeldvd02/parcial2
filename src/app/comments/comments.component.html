@@ -1,0 +1,23 @@
+<div class="mt-5">
+   <h2 class="text-2xl font-semibold text-gray-800 mb-4">Comentarios del Post {{ postId }}</h2>
+   <table *ngIf="comments.length > 0" class="w-full border-collapse shadow-lg">
+      <thead class="bg-blue-100 text-gray-800">
+         <tr>
+            <th class="border border-gray-300 p-4 text-left">Nombre</th>
+            <th class="border border-gray-300 p-4 text-left">Comentario</th>
+            <th class="border border-gray-300 p-4 text-left">Email</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let comment of comments" class="bg-white hover:bg-gray-100 transition-all">
+            <td class="border border-gray-300 p-4 text-gray-800">{{ comment.name }}</td>
+            <td class="border border-gray-300 p-4 text-gray-600">{{ comment.body }}</td>
+            <td class="border border-gray-300 p-4 text-blue-500">{{ comment.email }}</td>
+         </tr>
+      </tbody>
+   </table>
+
+   <div *ngIf="comments.length === 0" class="text-gray-600 mt-4">
+      No hay comentarios disponibles para este post.
+   </div>
+</div>
